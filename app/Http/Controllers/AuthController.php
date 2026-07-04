@@ -16,15 +16,15 @@ class AuthController extends Controller
         
         if (Auth::attempt($data)){
             $request->session()->regenerate();
-            return redirect()->route('index');
+            return redirect()->route('index')->with('success', 'Selamat Datang ' . Auth::user()->name);
         }
 
-        return back();
+        return back()->with('error', 'Username atau password salah');
     }
 
     public function logout(Request $request) {
         $request->session()->invalidate();
-        return redirect()->route('page.login');
+        return redirect()->route('page.login')->with('success', 'Saya akan kembali ke Solo, menjadi rakyat biasa 😊');
     }
 
     public function register(RegisterRequest $request) {

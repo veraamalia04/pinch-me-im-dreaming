@@ -1,1 +1,3 @@
-<x-layout></x-layout>
+<x-layout title="{{ config('app.name') }}">
+    
+</x-layout>

@@ -13,4 +13,8 @@ class PageController extends Controller
     public function registerPage() {
         return view('register');
     }
+
+    public function index() {
+        return view('welcome');
+    }
 }

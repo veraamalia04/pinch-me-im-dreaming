@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Role;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,10 +12,31 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::create('roles', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
+
+        Schema::create('role_users', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('role_id')->constrained('roles');
+            $table->timestamps();
+        });
+
+        $roles = ['cashier', 'stocker', 'owner'];
+        foreach($roles as $role){
+            Role::create(
+                ['name' => $role]
+            );
+        }
+
         Schema::create('products', function (Blueprint $table) {
             $table->ulid();
             $table->string('name');
             $table->string('deskripsi');
+            $table->string('foto')->nullable();
             $table->timestamps();
         });
 
@@ -22,7 +44,6 @@ return new class extends Migration
             $table->id();
             $table->foreignUlid('product_id')->constrained('products');
             $table->unsignedMediumInteger('harga_rupiah');
-
             $table->timestamps();
         });
 
@@ -59,7 +80,7 @@ return new class extends Migration
             $table->foreignUlid('product_id')->constrained('products');
 
             $table->unsignedBigInteger('quantity')->default(1);
-            $table->unsignedBigInteger('harga_rupiiah');
+            $table->unsignedBigInteger('harga_rupiah');
 
             $table->timestamps();
         });

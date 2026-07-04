@@ -9,4 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 class BoxDetail extends Model
 {
     protected $table = 'box_details';
+
+    public function box(){
+        return $this->belongsTo(Box::class, 'box_id');
+    }
+
+    public function product(){
+        return $this->belongsTo(Product::class, 'product_id');
+    }
 }

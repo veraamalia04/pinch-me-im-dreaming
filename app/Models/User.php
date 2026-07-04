@@ -3,7 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Database\Factories\UserFactory;
+use App\Models\Role;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -29,4 +29,20 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function roles(){
+        return $this->belongsToMany(Role::class, 'role_users', 'user_id', 'role_id')
+            ->withPivot(['name'])
+            ->withTimestamps();
+    }
+
+    public function box(){
+        return $this->hasOne(Box::class, 'user_id');
+    }
+
+    public function orders(){
+        return $this->hasMany(Order::class, 'user_id');
+    }
+
+    
 }

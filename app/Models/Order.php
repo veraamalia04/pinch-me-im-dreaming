@@ -11,4 +11,14 @@ class Order extends Model
 {
     use HasUlids;
     protected $table = 'orders';
+
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function details(){
+        return $this->hasMany(OrderDetail::class, 'order_id');
+    }
+
+    
 }

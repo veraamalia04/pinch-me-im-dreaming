@@ -16,6 +16,10 @@ class AuthController extends Controller
         
         if (Auth::attempt($data)){
             $request->session()->regenerate();
+            $user = Auth::id();
+            $user = user::where('id', $user)->first();
+
+            if($user->roles()->exists()) return redirect()->route('page.dashboard.index');
             return redirect()->route('index')->with('success', 'Selamat Datang ' . Auth::user()->name);
         }
 

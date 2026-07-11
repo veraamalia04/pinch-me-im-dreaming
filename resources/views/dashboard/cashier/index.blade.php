@@ -1,0 +1,1 @@
+<x-d-layout title="cashier"></x-d-layout>

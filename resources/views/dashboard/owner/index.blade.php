@@ -1,0 +1,1 @@
+<x-d-layout title="Penjualan"></x-d-layout>

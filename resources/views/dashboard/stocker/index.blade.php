@@ -1,0 +1,1 @@
+<x-d-layout title="stocker"></x-d-layout>

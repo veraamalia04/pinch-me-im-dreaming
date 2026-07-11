@@ -21,4 +21,14 @@ class PageController extends Controller
     public function dashboardPage() {
         return view('dashboard.index');
     }
+
+    public function cashierIndexPage() {
+        return view('dashboard.cashier.index');
+    }
+    public function stockerIndexPage() {
+        return view('dashboard.stocker.index');
+    }
+    public function ownerIndexPage() {
+        return view('dashboard.owner.index');
+    }
 }

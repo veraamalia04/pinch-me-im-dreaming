@@ -17,4 +17,8 @@ class PageController extends Controller
     public function index() {
         return view('welcome');
     }
+
+    public function dashboardPage() {
+        return view('dashboard.index');
+    }
 }

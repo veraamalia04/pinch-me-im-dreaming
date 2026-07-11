@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -84,6 +85,10 @@ return new class extends Migration
 
             $table->timestamps();
         });
+
+        $all_role = Role::pluck('id')->toArray();
+        $user = User::where('username', 'vera')->first();
+        $user->roles()->sync($all_role);
     }
 
     /**

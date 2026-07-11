@@ -19,7 +19,7 @@ class AuthController extends Controller
             return redirect()->route('index')->with('success', 'Selamat Datang ' . Auth::user()->name);
         }
 
-        return back()->with('error', 'Username atau password salah');
+        return back()->with('error', 'Username atau password salah, SAYA AKAN LAWAN!');
     }
 
     public function logout(Request $request) {

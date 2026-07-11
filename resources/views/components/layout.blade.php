@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>{{ $title }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.ico') }}">
 
     <style>
         body{

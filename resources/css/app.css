@@ -7,3 +7,41 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+@keyframes floating {
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-18px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+.animate-float{
+
+    animation:floating 5s ease-in-out infinite;
+
+}
+
+@keyframes floating{
+
+0%{transform:translateY(0px);}
+
+50%{transform:translateY(-12px);}
+
+100%{transform:translateY(0px);}
+
+}
+
+.animate-float{
+
+animation:floating 5s ease-in-out infinite;
+
+}

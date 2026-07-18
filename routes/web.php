@@ -14,6 +14,8 @@ Route::get('/daftar', [PageController::class, 'registerPage'])->middleware('gues
 Route::post('/daftar', [AuthController::class, 'register'])->middleware('guest')->name('post.register');
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('post.logout');
 
+Route::get('/menu', [PageController::class, 'menuPage'])->name('page.menu');
+
 Route::prefix('/dashboard')->middleware(['can:cashier', 'can:owner', 'can:stocker'])->group(function(){
     Route::get('/',[PageController::class, 'dashboardPage'])->name('page.dashboard.index');
 

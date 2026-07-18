@@ -16,7 +16,14 @@ class PageController extends Controller
     }
 
     public function index() {
-        return view('welcome');
+        $products= Product::with('prices')->get();
+        return view('welcome', compact('products'));
+
+    }
+
+    public function menuPage(){
+        $products= Product::with('prices')->get();
+        return view('menu', compact('products'));
     }
 
     public function dashboardPage() {

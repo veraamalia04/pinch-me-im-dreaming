@@ -1,1 +1,2 @@
-<x-d-layout title="Dashboard"></x-d-layout>
+<x-d-layout title="Dashboard">
+</x-d-layout>

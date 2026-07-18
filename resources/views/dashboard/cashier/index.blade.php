@@ -1,1 +1,3 @@
-<x-d-layout title="cashier"></x-d-layout>
+<x-d-layout title="cashier">
+    
+</x-d-layout>

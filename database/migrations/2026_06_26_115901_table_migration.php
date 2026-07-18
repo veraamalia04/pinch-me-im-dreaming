@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Product;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
@@ -34,10 +35,12 @@ return new class extends Migration
         }
 
         Schema::create('products', function (Blueprint $table) {
-            $table->ulid();
+            $table->ulid('id')->primary();
             $table->string('name');
             $table->string('deskripsi');
             $table->string('foto')->nullable();
+            $table->boolean('is_default')->nullable()->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -49,7 +52,7 @@ return new class extends Migration
         });
 
         Schema::create('boxes', function (Blueprint $table) {
-            $table->ulid();
+            $table->ulid('id')->primary();
 
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
@@ -64,13 +67,13 @@ return new class extends Migration
         });
 
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
+            $table->ulid('id')->primary();
             $table->foreignId('user_id')->constrained('users');
             $table->timestamp('pemesanan_pada')->nullable();
             $table->timestamp('pemrosesan_pada')->nullable();
             $table->timestamp('pengiriman_pada')->nullable();
             $table->timestamp('selesai_pada')->nullable();
-
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -89,6 +92,15 @@ return new class extends Migration
         $all_role = Role::pluck('id')->toArray();
         $user = User::where('username', 'vera')->first();
         $user->roles()->sync($all_role);
+
+        $product = Product::create([
+            'name' => 'Kue Cubit matcha',
+            'deskripsi' => 'Kue Cubit matchaaa Hulk',
+            'foto' => 'images/products/matcha-hulk.jpg',
+            'is_default' => true,
+        ]);
+
+        $product->prices()->create(['harga_rupiah' => 1000]);
     }
 
     /**

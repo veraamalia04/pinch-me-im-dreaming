@@ -22,14 +22,20 @@ Route::prefix('/dashboard')->middleware(['can:cashier', 'can:owner', 'can:stocke
     });
     Route::prefix('/stocker')->middleware('can:stocker')->group(function(){
         Route::get('/', [PageController::class, 'stockerIndexPage'])->name('page.dashboard.stocker.index');
-
+        Route::get('/tambah_menu', [PageController::class, 'createProductPage'])->name('page.product.create');
         Route::post('/add_menu', [ProductController::class, 'store'])->name('post.product.store');
-        Route::put('/update_product/{product}', [ProductController::class, 'update'])->name('put.product.update');
+        Route::get('/edit/{product}', [PageController::class, 'editProductPage'])->name('page.product.edit');
+
+        Route::put('/update_product/{product}', [ProductController::class, 'updateProduct'])->name('put.product.update');
         Route::post('/update_harga/{product}', [ProductController::class, 'updateHarga'])->name('post.product.update_harga');
         Route::delete('/delete_product/{product}', [ProductController::class, 'deleteProduct'])->name('delete.product.delete');
     });
     Route::prefix('/owner')->middleware('can:owner')->group(function(){
         Route::get('/', [PageController::class, 'ownerIndexPage'])->name('page.dashboard.owner.index');
     });
+
+    
+
+
 });
 

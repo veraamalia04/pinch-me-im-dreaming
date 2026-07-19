@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BoxController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -15,6 +16,14 @@ Route::post('/daftar', [AuthController::class, 'register'])->middleware('guest')
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('post.logout');
 
 Route::get('/menu', [PageController::class, 'menuPage'])->name('page.menu');
+
+Route::prefix('box')->group(function(){
+    Route::get('/', [PageController::class, 'boxPage'])->name('page.box.index');
+    Route::post('/', [BoxController::class, 'storeToBox'])->name('post.box.store_to_box');
+    
+    Route::post('/{detail}', [BoxController::class, 'subtractOneFromBox'])->name('post.box.subtract_one_from_box');
+    Route::delete('/{detail}', [BoxController::class, 'deleteBoxDetail'])->name('delete.box.delete_box_detail');
+});
 
 Route::prefix('/dashboard')->middleware(['can:cashier', 'can:owner', 'can:stocker'])->group(function(){
     Route::get('/',[PageController::class, 'dashboardPage'])->name('page.dashboard.index');

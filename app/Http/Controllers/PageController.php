@@ -51,4 +51,8 @@ class PageController extends Controller
     public function createProductPage() {
         return view('dashboard.stocker.create');
     }
+
+    public function boxPage({
+        return view();
+    })
 }

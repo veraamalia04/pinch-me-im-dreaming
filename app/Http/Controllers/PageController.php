@@ -52,7 +52,11 @@ class PageController extends Controller
         return view('dashboard.stocker.create');
     }
 
-    public function boxPage({
-        return view();
-    })
+    public function boxPage(){
+        return view('box.index');
+    }
+
+    public function orderPage(){
+        return view('order.index');
+    }
 }

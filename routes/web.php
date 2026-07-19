@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BoxController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,11 @@ Route::prefix('box')->group(function(){
     
     Route::post('/{detail}', [BoxController::class, 'subtractOneFromBox'])->name('post.box.subtract_one_from_box');
     Route::delete('/{detail}', [BoxController::class, 'deleteBoxDetail'])->name('delete.box.delete_box_detail');
+});
+
+Route::prefix('/order')->group(function(){
+    Route::get('/', [PageController::class, 'orderPage'])->name('page.order.index');
+    Route::post('/', [OrderController::class, 'transferBoxToOrder'])->name('post.order.transfer_cup_to_order');
 });
 
 Route::prefix('/dashboard')->middleware(['can:cashier', 'can:owner', 'can:stocker'])->group(function(){

@@ -59,7 +59,9 @@ class PageController extends Controller
         $user = User::with('box.details')->where('id', $userLoggedId)->first();
 
         $boxDetails = $user->box->details;
-        return view('box.index', compact('boxDetails'));
+        $box = $user->box;
+
+        return view('box.index', compact('boxDetails', 'box'));
     }
 
     public function orderPage(){

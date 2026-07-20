@@ -6,19 +6,15 @@
         <div class="bg-white shadow-sm rounded-xl border border-gray-100 overflow-hidden">
             
             <div class="p-6 space-y-6">
-                <!-- Inisialisasi variabel total -->
                 @php $grandTotal = 0; @endphp
 
                 @forelse ($boxDetails as $detail)
-                    <!-- Hitung subtotal per produk -->
                     @php 
                         $subtotal = $detail->product->price * $detail->quantity;
                         $grandTotal += $subtotal;
                     @endphp
 
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between py-4 border-b border-gray-50 last:border-0 last:pb-0 gap-4" id="{{ $detail->id }}">
-                        
-                        <!-- Info Produk (Gambar, Nama, Harga Satuan) -->
                         <div class="flex items-center space-x-4 flex-1">
                             <div class="w-20 h-20 flex-shrink-0">
                                 <img src="{{ $detail->product->foto_url }}" alt="{{ $detail->product->name }}" class="w-full h-full object-cover rounded-lg shadow-sm border border-gray-100">
@@ -26,11 +22,10 @@
                             <div>
                                 <h3 class="text-lg font-medium text-gray-800">{{ $detail->product->name }}</h3>
                                 <!-- Asumsi field harga di tabel product bernama 'price' -->
-                                <p class="text-sm text-gray-500 mt-1">Rp {{ number_format($detail->product->price, 0, ',', '.') }}</p>
+                                <p class="text-sm text-gray-500 mt-1">Rp {{ number_format($detail->sub_total, 0, ',', '.') }}</p>
                             </div>
                         </div>
 
-                        <!-- Kontrol Kuantitas & Subtotal -->
                         <div class="flex items-center justify-between sm:justify-end space-x-6 sm:w-auto w-full">
                             
                             <!-- Kontrol Kuantitas -->
@@ -53,13 +48,7 @@
                                     </button>
                                 </form>
                             </div>
-
-                            <!-- Subtotal Item -->
-                            <div class="text-right w-28">
-                                <p class="font-semibold text-gray-800">Rp {{ number_format($detail->product->current_price, 0, ',', '.') }}</p>
-                            </div>
                         </div>
-
                     </div>
                 @empty
                     <div class="text-center py-8 text-gray-400">
@@ -67,13 +56,11 @@
                     </div>
                 @endforelse
             </div>
-
-            <!-- Bagian Checkout / Order -->
             @if(count($boxDetails) > 0)
                 <div class="bg-gray-50 p-6 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div>
                         <h2 class="text-gray-500 text-sm">Total Belanja</h2>
-                        <p class="text-2xl font-bold text-gray-800">Rp {{ number_format($grandTotal, 0, ',', '.') }}</p>
+                        <p class="text-2xl font-bold text-gray-800">Rp {{ number_format($box->total_harga, 0, ',', '.') }}</p>
                     </div>
                     
                     <form action="{{ route('post.order.transfer_box_to_order') }}" method="POST" class="m-0 w-full sm:w-auto">
@@ -84,7 +71,6 @@
                     </form>
                 </div>
             @endif
-
         </div>
     </div>
 </x-layout>

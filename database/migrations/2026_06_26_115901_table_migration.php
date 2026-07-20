@@ -95,8 +95,8 @@ return new class extends Migration
 
         $dataProduk = [
             ['name' => 'Kue Cubit Matcha', 'deskripsi' => 'Kue Cubit matchaaa Hulk'],
-            ['name' => 'Bolu Kering Cokelat', 'deskripsi' => 'Bolu kering renyah dengan balutan cokelat leleh'],
-            ['name' => 'Bolu Kering Sprinkle', 'deskripsi' => 'Bolu kering manis dengan taburan sprinkle warna-warni'],
+            ['name' => 'Kue Cubit Cokelat', 'deskripsi' => 'Kue Cubit renyah dengan balutan cokelat leleh'],
+            ['name' => 'Kue Cubit Sprinkle', 'deskripsi' => 'Kue Cubit manis dengan taburan sprinkle warna-warni'],
             ['name' => 'Kue Cubit Keju', 'deskripsi' => 'Kue cubit gurih dengan taburan keju melimpah'],
             ['name' => 'Kue Cubit Red Velvet', 'deskripsi' => 'Kue cubit merah merona rasa red velvet'],
             ['name' => 'Kue Cubit Taro', 'deskripsi' => 'Kue cubit ungu manis rasa taro'],
@@ -105,9 +105,9 @@ return new class extends Migration
             ['name' => 'Kue Cubit Tiramisu', 'deskripsi' => 'Kue cubit aroma kopi tiramisu yang khas'],
             ['name' => 'Kue Cubit Greentea Almond', 'deskripsi' => 'Kue cubit greentea dengan irisan kacang almond'],
             ['name' => 'Kue Cubit Nutella', 'deskripsi' => 'Kue cubit isi selai Nutella lumer di mulut'],
-            ['name' => 'Bolu Kering Keju Panggang', 'deskripsi' => 'Bolu kering gurih dengan lapisan keju panggang'],
-            ['name' => 'Bolu Kering Moka', 'deskripsi' => 'Bolu kering renyah dengan aroma kopi moka'],
-            ['name' => 'Bolu Kering Klasik', 'deskripsi' => 'Bolu kering jadul renyah tahan lama'],
+            ['name' => 'Kue Cubit Keju Panggang', 'deskripsi' => 'Kue Cubit gurih dengan lapisan keju panggang'],
+            ['name' => 'Kue Cubit Moka', 'deskripsi' => 'Kue Cubit renyah dengan aroma kopi moka'],
+            ['name' => 'Kue Cubit Klasik', 'deskripsi' => 'Kue Cubit jadul renyah tahan lama'],
             ['name' => 'Kue Cubit Pandan', 'deskripsi' => 'Kue cubit wangi pandan asli'],
             ['name' => 'Kue Cubit Strawberry', 'deskripsi' => 'Kue cubit segar dengan topping selai strawberry'],
             ['name' => 'Kue Cubit Blueberry', 'deskripsi' => 'Kue cubit manis asam paduan selai blueberry'],

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -53,10 +55,15 @@ class PageController extends Controller
     }
 
     public function boxPage(){
-        return view('box.index');
+        $userLoggedId = Auth::id();
+        $user = User::with('box.details')->where('id', $userLoggedId)->first();
+
+        $boxDetails = $user->box->details;
+        return view('box.index', compact('boxDetails'));
     }
 
     public function orderPage(){
         return view('order.index');
     }
+
 }

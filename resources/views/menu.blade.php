@@ -10,6 +10,16 @@
 @keyframes riseUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 .toast-pop{animation:popIn .25s ease both}
 @keyframes popIn{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}
+
+/* Menyembunyikan panah default pada input type number */
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.qty-input {
+    -moz-appearance: textfield;
+}
 </style>
 
 <div class="font-body bg-[#FBF2E3] min-h-screen">
@@ -35,7 +45,7 @@
                 <circle cx="11" cy="11" r="7"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
-            <input id="cariMenu" type="text" placeholder="Cari kue cubit, bolu kering, rasa favoritmu..."
+            <input id="cariMenu" type="text" placeholder="Cari kue cubit, laba-laba, rasa favoritmu..."
                 class="w-full font-body bg-white border-2 border-[#E4CFB4] focus:border-[#C9963B] focus:outline-none rounded-full py-3 pl-12 pr-5 text-[#3A2415] placeholder-[#B08A63] transition-colors" />
         </div>
     </div>
@@ -55,21 +65,40 @@
                         </div>
 
                         <h3 class="font-display text-[#3A2415] text-lg leading-snug">{{ $product->name }}</h3>
-                        <p class="text-[#8A5A34] text-sm mt-2 leading-relaxed">{{ $product->deskripsi }}</p>
+                        <p class="text-[#8A5A34] text-sm mt-2 leading-relaxed flex-grow">{{ $product->deskripsi }}</p>
 
-                        <div class="font-price text-[#C1443C] text-lg mt-4">
+                        <div class="font-price text-[#C1443C] text-lg mt-4 mb-5">
                             Rp{{ number_format($product->current_price ?? 0, 0, ',', '.') }}
                         </div>
 
-                        <div class="w-full mt-4">
+                        <div class="w-full mt-auto">
                             @auth
-                                <button type="button" data-id="{{ $product->id }}"
-                                    class="tombol-tambah w-full bg-[#3A2415] hover:bg-[#6B4226] text-[#FBF2E3] font-body font-semibold text-sm rounded-full py-3 transition-colors">
-                                    Tambah ke Box
-                                </button>
+                                <form action="{{ route('post.box.store_to_box') }}" method="POST" class="w-full">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    
+                                    <!-- Kontrol Plus Minus -->
+                                    <div class="flex items-center justify-between border-2 border-[#E4CFB4] rounded-full p-1 mb-3 bg-[#FBF2E3]/30">
+                                        <button type="button" onclick="updateQty(this, -1)" class="w-8 h-8 flex justify-center items-center rounded-full text-[#8A5A34] hover:bg-[#E4CFB4] transition-colors focus:outline-none">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+                                        </button>
+                                        
+                                        <input type="number" name="quantity" value="1" min="1" class="qty-input w-12 text-center bg-transparent font-price text-[#3A2415] focus:outline-none font-bold" readonly>
+                                        
+                                        <button type="button" onclick="updateQty(this, 1)" class="w-8 h-8 flex justify-center items-center rounded-full text-[#8A5A34] hover:bg-[#E4CFB4] transition-colors focus:outline-none">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                                        </button>
+                                    </div>
+
+                                    <!-- Tombol Submit -->
+                                    <button type="submit" class="w-full bg-[#3A2415] hover:bg-[#6B4226] text-[#FBF2E3] font-body font-semibold text-sm rounded-full py-3 transition-colors shadow-md flex items-center justify-center gap-2">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                                        Tambah ke Box
+                                    </button>
+                                </form>
                             @else
                                 <a href="{{ route('page.login') }}"
-                                    class="block w-full bg-[#E4CFB4] hover:bg-[#C9963B] text-[#3A2415] font-body font-semibold text-sm rounded-full py-3 transition-colors">
+                                    class="block w-full bg-[#E4CFB4] hover:bg-[#C9963B] text-[#3A2415] font-body font-semibold text-sm rounded-full py-3 transition-colors text-center">
                                     Masuk untuk Pesan
                                 </a>
                             @endauth
@@ -91,6 +120,20 @@
 </div>
 
 <script>
+// Fungsi untuk mengatur Plus & Minus Quantity
+function updateQty(button, change) {
+    // Mencari input di dalam form yang sama dengan tombol yang diklik
+    let container = button.parentElement;
+    let input = container.querySelector('.qty-input');
+    let currentValue = parseInt(input.value) || 1;
+    let newValue = currentValue + change;
+    
+    // Pastikan quantity tidak kurang dari 1
+    if (newValue >= 1) {
+        input.value = newValue;
+    }
+}
+
 (function(){
     var input = document.getElementById('cariMenu');
     var kartu = document.querySelectorAll('.kartu-produk');

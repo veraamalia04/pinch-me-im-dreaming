@@ -19,16 +19,16 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->n
 Route::get('/menu', [PageController::class, 'menuPage'])->name('page.menu');
 
 Route::prefix('box')->group(function(){
+    Route::post('/{detail}/kurang', [BoxController::class, 'subtractOneFromBox'])->name('post.box.subtract_one_from_box');
+    Route::post('/{detail}/tambah', [BoxController::class, 'increaseOneToBox'])->name('post.box.increase_one_to_box');
+    Route::delete('/{detail}', [BoxController::class, 'deleteBoxDetail'])->name('delete.box.delete_box_detail');
     Route::get('/', [PageController::class, 'boxPage'])->name('page.box.index');
     Route::post('/', [BoxController::class, 'storeToBox'])->name('post.box.store_to_box');
-    
-    Route::post('/{detail}', [BoxController::class, 'subtractOneFromBox'])->name('post.box.subtract_one_from_box');
-    Route::delete('/{detail}', [BoxController::class, 'deleteBoxDetail'])->name('delete.box.delete_box_detail');
 });
 
 Route::prefix('/order')->group(function(){
     Route::get('/', [PageController::class, 'orderPage'])->name('page.order.index');
-    Route::post('/', [OrderController::class, 'transferBoxToOrder'])->name('post.order.transfer_cup_to_order');
+    Route::post('/', [OrderController::class, 'transferBoxToOrder'])->name('post.order.transfer_box_to_order');
 });
 
 Route::prefix('/dashboard')->middleware(['can:cashier', 'can:owner', 'can:stocker'])->group(function(){

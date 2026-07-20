@@ -35,6 +35,12 @@ class BoxController extends Controller
         return back()->with('success', 'Kue cubit berhasil dimasukkan ke dalam box');
     }
 
+    public function increaseOneToBox(BoxDetail $detail){
+        $detail->increment('quantity');
+
+        return back()->with('success', 'Kue cubit berhasil ditambahkan')->withFragment($detail->id);
+    }
+
     public function subtractOneFromBox(BoxDetail $detail){
         if ($detail->quantity > 1){
             $detail->decrement('quantity');
@@ -42,7 +48,7 @@ class BoxController extends Controller
             $detail->delete();
         }
 
-        return back()->with('success', 'Kue cubit berhasil dikurangkan');
+        return back()->with('success', 'Kue cubit berhasil dikurangkan')->withFragment($detail->id);
     }
 
     public function deleteBoxDetail(BoxDetail $detail){

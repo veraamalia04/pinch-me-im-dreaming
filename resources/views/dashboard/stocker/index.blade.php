@@ -26,6 +26,41 @@
                 </a>
             </div>
         </div>
+        {{-- Search --}}
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
+
+    <div class="relative w-full md:w-96">
+
+        <input
+            type="text"
+            placeholder="Cari produk..."
+            class="w-full rounded-xl border border-slate-300 bg-white py-3 pl-11 pr-4 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 outline-none">
+
+        <svg xmlns="http://www.w3.org/2000/svg"
+             class="absolute left-4 top-3.5 w-5 h-5 text-slate-400"
+             fill="none"
+             viewBox="0 0 24 24"
+             stroke="currentColor">
+
+            <path stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-4.3-4.3m1.8-5.2a7 7 0 11-14 0 7 7 0 0114 0z"/>
+
+        </svg>
+
+    </div>
+
+    <select
+        class="rounded-xl border border-slate-300 bg-white px-4 py-3">
+
+        <option>Semua Kategori</option>
+        <option>Kue Cubit</option>
+        <option>Bolu</option>
+
+    </select>
+
+</div>
 
         {{-- Grid Produk --}}
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -50,6 +85,17 @@
                         <h4 class="text-lg font-bold text-slate-900 line-clamp-1" title="{{ $product->name }}">
                             {{ $product->name }}
                         </h4>
+                        <div class="mt-3">
+
+                        <span class="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">
+
+                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+
+                        Ready Stock
+
+                        </span>
+
+                        </div>
 
                         <p class="text-sm text-slate-500 mt-2 line-clamp-2 min-h-[2.5rem] leading-relaxed">
                             {{ $product->deskripsi ?? 'Belum ada deskripsi untuk produk ini.' }}

@@ -70,7 +70,7 @@ class PageController extends Controller
 
         $user = User::with('orders.details.product')->where('id', $userLoggedId)->first();
         $orders = $user->orders;
-        return view('order.index' compact('orders'));
+        return view('order.index', compact('orders'));
     }
 
     public function orderDetailPage(Order $order){

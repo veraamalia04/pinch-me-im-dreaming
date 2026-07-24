@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Appends;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 #[Fillable(['user_id', 'pemesanan_pada', 'pemrosesan_pada', 'pengiriman_pada', 'selesai_pada'])]
+#[Appends(['sub_total', 'status'])]
 class Order extends Model
 {
     use HasUlids, SoftDeletes;
@@ -21,5 +23,15 @@ class Order extends Model
         return $this->hasMany(OrderDetail::class, 'order_id');
     }
 
-    
+    public function getTotalHargaAttribute(){
+        return $this->details->sum('sub_total');
+    }
+
+    public function getStatusAttribute(): string{
+        if($this->selesai_pada) return 'Selesai';
+        if($this->pengiriman_pada) return'Dikirim';
+        if($this->pemrosesan_pada) return 'Diproses';
+
+        return 'Dipesan'
+    }
 }

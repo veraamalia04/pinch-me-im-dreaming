@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -65,7 +66,14 @@ class PageController extends Controller
     }
 
     public function orderPage(){
-        return view('order.index');
+        $userLoggedId = Auth::id();
+
+        $user = User::with('orders.details.product')->where('id', $userLoggedId)->first();
+        $orders = $user->orders;
+        return view('order.index' compact('orders'));
     }
 
+    public function orderDetailPage(Order $order){
+         return view('order.show');
+    }
 }

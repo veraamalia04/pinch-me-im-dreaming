@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Appends;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 
 #[Fillable(['order_id', 'product_id', 'quantity', 'harga_rupiah'])]
-
+#[Appends(['sub_total'])]
 class OrderDetail extends Model
 {
     protected $table = 'order_details';
@@ -17,5 +18,10 @@ class OrderDetail extends Model
 
     public function order(){
         return $this->belongsTo(Order::class, 'order_id');
+    }
+
+    public function getSubTotalAttribute(){
+        return $this->harga_rupiah * $this->quantity;
+
     }
 }

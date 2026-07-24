@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,5 +30,27 @@ class OrderController extends Controller
         $deleteBox = $user->box->details()->delete();
 
         return back()->with('success', 'Produk di order');
+    }
+
+    public function menandaiDiproses(Order $order){
+        $order = $order->update(['pemrosesan_pada' => now()]);
+
+        return back()->with('success', 'Order ditandai sedang diproses');
+    }
+
+    public function mengirimOrder(Order $order){
+        $order = $order->update(['pengiriman_pada' => now()]);
+
+        return back()->with('success', 'Order ditandai sedang dikirim');
+    }
+
+    public function menandaiSelesai()(Order $order){
+        $userLoggedId = Auth::id();
+
+        if(!$order->pengiriman_pada || !$order->pemrosesan_pada || !$order->selesai_pada) return back()->with('error', 'Tidak bisa melakukan ini');
+        if($userLoggedId != $order->user_id) return back()->with('error', 'Tidak bisa melakukan ini');
+        $order = $order->update(['selesai_pada' => now()]);
+
+        return back()->with('success', 'Order telah selesai');
     }
 }

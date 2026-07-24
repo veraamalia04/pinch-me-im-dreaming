@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
-use App\Models\Product;
+
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -14,7 +15,7 @@ class OrderController extends Controller
 
         if(!$user->box || $user->box->details->isEmpty()) return back('error', 'Tidak ada produk dalam box');
 
-        $order = Order::firstOrCreate(['user_id', $user->id, 'pemesanan_pada' => now()]);
+        $order = $user->orders()->create(['user_id', $user->id, 'pemesanan_pada' => now()]);
 
         foreach($user->box->details as $detail) {
 

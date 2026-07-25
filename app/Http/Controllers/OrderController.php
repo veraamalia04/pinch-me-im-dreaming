@@ -44,10 +44,10 @@ class OrderController extends Controller
         return back()->with('success', 'Order ditandai sedang dikirim');
     }
 
-    public function menandaiSelesai()(Order $order){
+    public function menandaiSelesai(Order $order){
         $userLoggedId = Auth::id();
 
-        if(!$order->pengiriman_pada || !$order->pemrosesan_pada || !$order->selesai_pada) return back()->with('error', 'Tidak bisa melakukan ini');
+        if(!$order->pengiriman_pada || !$order->pemrosesan_pada || $order->selesai_pada) return back()->with('error', 'Tidak bisa melakukan ini');
         if($userLoggedId != $order->user_id) return back()->with('error', 'Tidak bisa melakukan ini');
         $order = $order->update(['selesai_pada' => now()]);
 

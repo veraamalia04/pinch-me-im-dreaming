@@ -34,8 +34,13 @@ class PageController extends Controller
     }
 
     public function cashierIndexPage() {
-       
-        return view('dashboard.cashier.index');
+        $orders = Order::with(['details.product', 'user'])->orderBy('created_at', 'DESC')->whereNull('selesai_pada')->get();
+        $todayOrders = Order::with(['details.product', 'user'])->today()->get();
+        $todayEarnings = Order::today()->whereNotNull('pemrosesan_pada')->whereNotNull('pengiriman_pada')
+            ->get()->sum('total_harga');
+        
+        $todayCustomers = Order::today()->distinct('user_id')->count();
+        return view('dashboard.cashier.index', compact('orders', 'todayOrders', 'todayEarnings', 'todayCustomers'));
     }
     public function stockerIndexPage() {
         $products = Product::with('prices')->get();
@@ -74,6 +79,7 @@ class PageController extends Controller
     }
 
     public function orderDetailPage(Order $order){
-         return view('order.show');
+        $order->load('details.product');
+         return view('order.show', compact('order'));
     }
 }

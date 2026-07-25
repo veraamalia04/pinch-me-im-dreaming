@@ -37,6 +37,6 @@ class Order extends Model
     }
 
     public function scopeToday(): Builder{
-        return $this->whereDate('create_at', today());
+        return $this->whereDate('created_at', today());
     }
 }

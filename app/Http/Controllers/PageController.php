@@ -34,7 +34,7 @@ class PageController extends Controller
     }
 
     public function cashierIndexPage() {
-        $orders = Order::with(['details.product', 'user'])->orderBy('created_at', 'DESC')->whereNull('selesai_pada')->get();
+        $orders = Order::with(['details.product', 'user'])->orderBy('created_at', 'DESC')->get();
         $todayOrders = Order::with(['details.product', 'user'])->today()->get();
         $todayEarnings = Order::today()->whereNotNull('pemrosesan_pada')->whereNotNull('pengiriman_pada')
             ->get()->sum('total_harga');

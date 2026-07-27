@@ -2,29 +2,25 @@
 <section class="max-w-7xl mx-auto px-8">
     <div class="grid lg:grid-cols-2 items-center min-h-[80vh]">
         <div>
-            <h1 class="mt-6 text-6xl font-black leading-tight text-amber-900">
+            <h1 class="mt-2 text-5xl font-black leading-tight text-amber-900">
                 Freshly Made
                 <br>
                 Kue Cubit
             </h1>     
-           <p class="mt-6 text-xl text-amber-800 max-w-xl leading-9">
+           <p class="mt-4 text-xl text-amber-800 max-w-xl leading-8">
                 Nikmati kue cubit hangat dengan berbagai topping premium
                 yang dibuat setiap hari menggunakan bahan berkualitas.
             </p>
-            <div class="mt-10 flex gap-5">
+            <div class="mt-6 flex gap-5">
                 <a href="{{ route('page.menu') }}"
                     class="bg-amber-800 text-white px-15 py-4 rounded-full hover:scale-105 transition">
                     Explore Menu
                 </a>
             </div>
-            <div class="flex gap-10 mt-12">
+            <div class="flex gap-8 mt-6">
                 <div>
                     ⭐ <strong>4.9</strong>
-                </div>
-                <div>
                     🍫 <strong>20+ Toppings</strong>
-                </div>
-                <div>
                     🚚 <strong>Fast Delivery</strong>
                 </div>
             </div>
@@ -32,22 +28,14 @@
         <div>
         </div>
     </div>
-</section>
-</x-layout>
+
 <div class="absolute top-16 right-10 text-3xl">
 ✨
 </div>
 <div class="absolute bottom-10 left-5 text-4xl">
 🍫
 </div>
-<div class="absolute top-48 left-0 text-4xl">
-🍓
-</div>
-<div class="relative flex justify-center">
-    <img
-        src="{{ asset('images/cubit.png') }}"
-        class="w-[450px] animate-float">
-</div>
+
 <div class="hidden lg:block">
     <div class="absolute top-1/2 right-11 -translate-y-1/2 z-20">
         <div class="w-[380px] rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl p-8 text-center">
@@ -81,3 +69,5 @@
         </div>
     </div>
 </div>
+</section>
+</x-layout>

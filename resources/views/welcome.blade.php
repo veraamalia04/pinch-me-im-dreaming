@@ -17,35 +17,32 @@
                     Explore Menu
                 </a>
             </div>
-            <div class="flex gap-8 mt-6">
-                <div>
-                    ⭐ <strong>4.9</strong>
-                    🍫 <strong>20+ Toppings</strong>
-                    🚚 <strong>Fast Delivery</strong>
-                </div>
+            <div class="flex gap-8 mt-6 text-amber-900 font-semibold">
+                <div>⭐ <strong>4.9</strong></div>
+                <div>🍫 <strong>20+ Toppings</strong></div>
+                <div>🚚 <strong>Fast Delivery</strong></div>
             </div>
         </div>
         <div>
         </div>
     </div>
 
-<div class="absolute top-16 right-10 text-3xl">
-✨
 </div>
 <div class="absolute bottom-10 left-5 text-4xl">
 🍫
 </div>
 
 <div class="hidden lg:block">
-    <div class="absolute top-1/2 right-11 -translate-y-1/2 z-20">
-        <div class="w-[380px] rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl p-8 text-center">
+    <div class="absolute top-[52%] right-11 -translate-y-1/2 z-20">
+        <div class="w-[380px] rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl p-2 text-center">
             <span class="inline-block bg-yellow-400 text-amber-900 px-4 py-2 rounded-full font-bold">
                 Best Seller
             </span>
             <img
-                src="{{ asset('images/logo.png') }}"
-                class="w-26 mx-auto mt-6 animate-float">
-            <h2 class="mt-6 text-3xl font-bold text-white">
+                src="{{ asset('images/Card-kue-cubit.jpeg') }}"
+                alt="Kue Cubit"
+                class="w-64 h-44 object-cover rounded-2xl mx-auto mt-2 shadow-lg hover:scale-105 transition duration-300">
+            <h2 class="mt-2 text-2xl font-bold text-white">
     Chocolate Lava
 </h2>
 <div class="flex justify-center items-center gap-2 mt-3">

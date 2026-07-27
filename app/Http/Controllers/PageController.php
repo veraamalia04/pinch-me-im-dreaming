@@ -46,8 +46,29 @@ class PageController extends Controller
         $products = Product::with('prices')->get();
         return view('dashboard.stocker.index', compact('products'));
     }
-    public function ownerIndexPage() {
-        return view('dashboard.owner.index');
+    public function ownerIndexPage(Request $request) {
+        $filter = $request->input('filter', 'semua');
+
+        $ordersDone = Order::selesai()
+            ->when($filter === 'harian', function ($query) {
+                $query->whereDate('pemesanan_pada', today());
+            })
+            ->when($filter === 'mingguan', function ($query) {
+                $query->whereBetween('pemesanan_pada', [
+                    now()->startOfWeek(),
+                    now()->endOfWeek(),
+                ]);
+            })
+            ->when($filter === 'bulanan', function ($query) {
+                $query->whereMonth('pemesanan_pada', now()->month)
+                    ->whereYear('pemesanan_pada', now()->year);
+            })
+            ->get();
+
+            $totalHargaPenjualan = $ordersDone->sum('totalHarga');
+            $totalProdukTerjual = $ordersDone->count();
+            $totalPembeliUnik = $ordersDone->pluck('user_id')->unique()->count();
+        return view('dashboard.owner.index', compact('filter', 'ordersDone', 'totalHargaPenjualan', 'totalProdukTerjual', 'totalPembeliUnik'));
     }
 
     public function editProductPage(Product $product){
@@ -64,7 +85,7 @@ class PageController extends Controller
         $userLoggedId = Auth::id();
         $user = User::with('box.details')->where('id', $userLoggedId)->first();
 
-        $boxDetails = $user->box->details;
+        $boxDetails = $user->box->details ?? [];
         $box = $user->box;
 
         return view('box.index', compact('boxDetails', 'box'));

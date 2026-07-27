@@ -29,7 +29,7 @@
         {{-- Search --}}
 <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
 
-    <div class="relative w-full md:w-96">
+    <div class="relative w-full">
 
         <input
             type="text"
@@ -50,15 +50,6 @@
         </svg>
 
     </div>
-
-    <select
-        class="rounded-xl border border-slate-300 bg-white px-4 py-3">
-
-        <option>Semua Kategori</option>
-        <option>Kue Cubit</option>
-        <option>Bolu</option>
-
-    </select>
 
 </div>
 

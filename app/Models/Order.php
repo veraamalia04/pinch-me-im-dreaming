@@ -39,4 +39,8 @@ class Order extends Model
     public function scopeToday(): Builder{
         return $this->whereDate('created_at', today());
     }
+
+    public function scopeSelesai(): Builder{
+        return $this->whereNotNull('selesai_pada');
+    }
 }

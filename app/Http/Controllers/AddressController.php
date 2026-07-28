@@ -10,22 +10,22 @@ use Illuminate\Http\Request;
 
 class AddressController extends Controller
 {
-    public function createAddress(User $user, CreateRequest $request){
+    public function storeAddress(User $user, CreateRequest $request){
         $data = $request->validated();
 
         $address = $user->addresses()->create([
-            'rt' = $data['rt'],
-            'rw' = $data['rw'],
-            'kota' = $data['kota'],
-            'kecamatan' = $data['kecamatan'],
-            'kelurahan' = $data['kelurahan'],
-            'alamat' = $data['alamat'],
-            'kode_pos' = $data['kode_pos'],
+            'rt' => $data['rt'],
+            'rw' => $data['rw'],
+            'kota' => $data['kota'],
+            'kecamatan' => $data['kecamatan'],
+            'kelurahan' => $data['kelurahan'],
+            'alamat' => $data['alamat'],
+            'kode_pos' => $data['kode_pos'],
 
             'is_active' => true,
         ]);
 
-        return redirect()->route('page.home')->with('success', 'Selamat datang ' . config('app.name'));
+        return redirect()->route('index')->with('success', 'Selamat datang ' . config('app.name'));
 
     }
 
@@ -43,13 +43,13 @@ class AddressController extends Controller
         $data = $request->validated();
 
         $address = $address->update([
-            'rt' = $data['rt'],
-            'rw' = $data['rw'],
-            'kota' = $data['kota'],
-            'kecamatan' = $data['kecamatan'],
-            'kelurahan' = $data['kelurahan'],
-            'alamat' = $data['alamat'],
-            'kode_pos' = $data['kode_pos'],
+            'rt' => $data['rt'],
+            'rw' => $data['rw'],
+            'kota' => $data['kota'],
+            'kecamatan' => $data['kecamatan'],
+            'kelurahan' => $data['kelurahan'],
+            'alamat' => $data['alamat'],
+            'kode_pos' => $data['kode_pos'],
 
             'is_active' => true,
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BoxController;
 use App\Http\Controllers\OrderController;
@@ -15,6 +16,15 @@ Route::post('/login', [AuthController::class, 'login'])->middleware('guest')->na
 Route::get('/daftar', [PageController::class, 'registerPage'])->middleware('guest')->name('page.register');
 Route::post('/daftar', [AuthController::class, 'register'])->middleware('guest')->name('post.register');
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('post.logout');
+Route::prefix('/alamat')->group(function(){
+    Route::get('/', [PageController::class, 'PageCreateAddress'])->name('page.address.create');
+    Route::delete('/{user}/{address}', [AddressController::class, 'deleteAddress'])->name('delete.address');
+    Route::put('/{address}/is_active', [AddressController::class, 'changeActiveAddress'])->name('put.address.change_active_address');
+    Route::post('/{user}', [AddressController::class, 'storeAddress'])->name('post.address.store');
+    Route::put('/{address}', [AddressController::class, 'updateAddress'])->name('post.address.update');
+
+});
+
 
 Route::get('/menu', [PageController::class, 'menuPage'])->name('page.menu');
 

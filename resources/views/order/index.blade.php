@@ -6,7 +6,7 @@
             </h1>
             <p class="text-amber-700 text-center mb-8">Semua transaksi kue cubit kamu ada di sini</p>
 
-            @if($orders->isEmpty())
+            @if(blank($orders) || $orders->isEmpty())
                 <div class="text-center py-16">
                     <p class="text-amber-800 text-lg">Belum ada pesanan nih.</p>
                 </div>

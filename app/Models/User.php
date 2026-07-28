@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Role;
+use App\Models\Address;
 use Illuminate\Database\Eloquent\Attributes\Appends;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
@@ -59,4 +60,9 @@ class User extends Authenticatable
 
         return strtoupper($first . $last);
     }
+
+    public function addresses(){
+        return $this->hasMany(Address::class, 'user_id');
+    }
+    
 }

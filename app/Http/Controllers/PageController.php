@@ -86,7 +86,7 @@ class PageController extends Controller
         $user = User::with('box.details')->where('id', $userLoggedId)->first();
 
         $boxDetails = $user->box->details ?? [];
-        $box = $user->box;
+        $box = $user->box ?? [];
 
         return view('box.index', compact('boxDetails', 'box'));
     }
@@ -95,7 +95,7 @@ class PageController extends Controller
         $userLoggedId = Auth::id();
 
         $user = User::with('orders.details.product')->where('id', $userLoggedId)->first();
-        $orders = $user->orders;
+        $orders = $user->orders ?? [];
         return view('order.index', compact('orders'));
     }
 

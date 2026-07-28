@@ -6,6 +6,7 @@ use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Attributes\Appends;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 #[Appends(['total_harga', 'status'])]
 class Order extends Model
 {
-    use HasUlids, SoftDeletes;
+    use HasUlids, SoftDeletes, HasFactory;
     protected $table = 'orders';
 
     public function user(){

@@ -17,13 +17,17 @@ Route::get('/daftar', [PageController::class, 'registerPage'])->middleware('gues
 Route::post('/daftar', [AuthController::class, 'register'])->middleware('guest')->name('post.register');
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('post.logout');
 
+Route::get('/myprofile', [PageController::class, 'myProfile'])->name('page.myprofile');
+
+
+
 Route::prefix('/alamat')->middleware('auth')->group(function(){
     Route::delete('/{user}/{address}', [AddressController::class, 'deleteAddress'])->name('delete.address');
     Route::put('/{address}/is_active', [AddressController::class, 'changeActiveAddress'])->name('put.address.change_active_address');
     Route::get('/{address}/edit', [PageController::class, 'pageEditAddress'])->name('page.address.edit');
     Route::get('/{user:username}', [PageController::class, 'pageCreateAddress'])->name('page.address.create');
     Route::post('/{user}', [AddressController::class, 'storeAddress'])->name('post.address.store');
-    Route::put('/{address}', [AddressController::class, 'updateAddress'])->name('post.address.update');
+    Route::put('/{address}', [AddressController::class, 'updateAddress'])->name('put.address.update');
 
 });
 

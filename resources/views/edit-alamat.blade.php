@@ -23,9 +23,10 @@
             </div>
 
             <!-- Form Section -->
-            <form action="{{ route('post.address.store', Auth::id()) }}" method="POST" class="space-y-8">
+            <form action="{{ route('put.address.update', Auth::id()) }}" method="POST" class="space-y-8">
                 @csrf
                 
+                @method('PUT')
                 <!-- Grup 1: Alamat Jalan (Box Berwarna Halus) -->
                 <div class="bg-slate-50/50 p-6 rounded-2xl border border-slate-100 transition-all duration-300 hover:bg-white hover:shadow-md hover:border-blue-100 group">
                     <h3 class="text-sm font-semibold text-slate-700 mb-5 flex items-center">

@@ -19,6 +19,7 @@ class AuthController extends Controller
             $user = Auth::id();
             $user = user::where('id', $user)->first();
 
+            if($user->addresses->isEmpty()) return redirect()->route('page.address.create', $user->username);
             if($user->roles()->exists()) return redirect()->route('page.dashboard.index');
             return redirect()->route('index')->with('success', 'Selamat Datang ' . Auth::user()->name);
         }

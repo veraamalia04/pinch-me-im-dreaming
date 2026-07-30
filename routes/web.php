@@ -10,14 +10,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'index'])->name('index');
 
-Route::get('/login', [PageController::class, 'loginPage'])->middleware('guest')->name('page.login');
+Route::get('/login', [PageController::class, 'loginPage'])->middleware('guest')->name('login');
 Route::post('/login', [AuthController::class, 'login'])->middleware('guest')->name('post.login');
 
 Route::get('/daftar', [PageController::class, 'registerPage'])->middleware('guest')->name('page.register');
 Route::post('/daftar', [AuthController::class, 'register'])->middleware('guest')->name('post.register');
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('post.logout');
 
-Route::get('/myprofile', [PageController::class, 'myProfile'])->name('page.myprofile');
+Route::get('/myprofile', [PageController::class, 'myProfile'])->middleware('redirect-if-no-address')->name('page.myprofile');
 
 
 
@@ -32,9 +32,9 @@ Route::prefix('/alamat')->middleware('auth')->group(function(){
 });
 
 
-Route::get('/menu', [PageController::class, 'menuPage'])->name('page.menu');
+Route::get('/menu', [PageController::class, 'menuPage'])->middleware('redirect-if-no-address')->name('page.menu');
 
-Route::prefix('box')->group(function(){
+Route::prefix('box')->middleware('redirect-if-no-address')->group(function(){
     Route::post('/{detail}/kurang', [BoxController::class, 'subtractOneFromBox'])->name('post.box.subtract_one_from_box');
     Route::post('/{detail}/tambah', [BoxController::class, 'increaseOneToBox'])->name('post.box.increase_one_to_box');
     Route::delete('/{detail}', [BoxController::class, 'deleteBoxDetail'])->name('delete.box.delete_box_detail');
@@ -42,7 +42,7 @@ Route::prefix('box')->group(function(){
     Route::post('/', [BoxController::class, 'storeToBox'])->name('post.box.store_to_box');
 });
 
-Route::prefix('/order')->group(function(){
+Route::prefix('/order')->middleware('redirect-if-no-address')->group(function(){
     Route::get('/', [PageController::class, 'orderPage'])->name('page.order.index');
     Route::post('/', [OrderController::class, 'transferBoxToOrder'])->name('post.order.transfer_box_to_order');
     Route::put('/{order}/menandai_selesai', [OrderController::class, 'menandaiSelesai'])->name('put.order.tandai_selesai');

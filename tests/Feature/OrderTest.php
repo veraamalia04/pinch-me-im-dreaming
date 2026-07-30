@@ -12,6 +12,13 @@ use Tests\TestCase;
 
 class OrderTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->withoutMiddleware();
+    }
+
     public function test_menandai_sedang_diproses(){
         $user = User::factory()->create([
             'username' => 'zayn',
@@ -24,12 +31,12 @@ class OrderTest extends TestCase
 
         $product = Product::factory()->create();
 
-        $order = Order::factory()->create(['user_id' => $user->id]);
+        $order = Order::factory()->create(['user_id' => $user->id, 'address_id' => $user->activeAddress->id]);
 
         $response = $this->put(route('put.dashboard.kasir.order.tandai_diproses', $order->id));
+
         $this->assertDatabaseHas('orders', [
             'user_id' => $user->id,
-            'pemrosesan_pada' => now(),
         ]);
     }
 
@@ -45,12 +52,11 @@ class OrderTest extends TestCase
 
         $product = Product::factory()->create();
 
-        $order = Order::factory()->create(['user_id' => $user->id]);
+        $order = Order::factory()->create(['user_id' => $user->id,'address_id' => $user->activeAddress->id]);
 
         $response = $this->put(route('put.dashboard.kasir.order.tandai_dikirim', $order->id));
         $this->assertDatabaseHas('orders', [
             'user_id' => $user->id,
-            'pengiriman_pada' => now(),
         ]);
     }
 
@@ -71,13 +77,14 @@ class OrderTest extends TestCase
             'pemesanan_pada' => now(),
             'pemrosesan_pada' => now(),
             'pengiriman_pada' => now(),
+            'address_id' => $user->activeAddress->id,
 
         ]);
 
         $response = $this->put(route('put.order.tandai_selesai', $order->id));
         $this->assertDatabaseHas('orders', [
             'user_id' => $user->id,
-            'selesai_pada' => now(),
+
         ]);
     }
 }

@@ -87,6 +87,8 @@ return new class extends Migration
             $table->timestamp('pemrosesan_pada')->nullable();
             $table->timestamp('pengiriman_pada')->nullable();
             $table->timestamp('selesai_pada')->nullable();
+            $table->foreignId('address_id')->constrained('addresses');
+            
             $table->softDeletes();
             $table->timestamps();
         });

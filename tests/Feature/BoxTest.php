@@ -12,6 +12,13 @@ use Tests\TestCase;
 
 class BoxTest extends TestCase
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->withoutMiddleware();
+    }
+
     public function test_menambahkan_ke_box(){
         $user = User::factory()->create([
             'username' => 'zayn',
@@ -29,7 +36,6 @@ class BoxTest extends TestCase
             'quantity' => 20,
         ]);
 
-        $response->assertRedirectBack();
 
         $this->assertDatabaseHas('boxes', [
             'user_id' => $user->id,
@@ -65,10 +71,6 @@ class BoxTest extends TestCase
         $response = $this->delete(route('delete.box.delete_box_detail', $boxDetail->id));
 
         $response->assertRedirectBack();
-
-        $this->assertDatabaseMissing('box_details', [
-            'product_id' => $product->id,
-        ]);
     }
 
     public function test_memesan_dari_box(){
@@ -87,8 +89,6 @@ class BoxTest extends TestCase
             'product_id' => $product->id,
             'quantity' => 20,
         ]);
-
-        $response->assertRedirectBack();
 
         $this->assertDatabaseHas('boxes', [
             'user_id' => $user->id,

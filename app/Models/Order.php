@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-#[Fillable(['user_id', 'pemesanan_pada', 'pemrosesan_pada', 'pengiriman_pada', 'selesai_pada'])]
+#[Fillable(['user_id', 'pemesanan_pada', 'pemrosesan_pada', 'pengiriman_pada', 'selesai_pada', 'address_id'])]
 #[Appends(['total_harga', 'status'])]
 class Order extends Model
 {
@@ -27,6 +27,10 @@ class Order extends Model
 
     public function getTotalHargaAttribute(){
         return $this->details->sum('sub_total');
+    }
+
+    public function address(){
+        return $this->belongsTo(Address::class, 'address_id');
     }
 
     public function getStatusAttribute(): string{

@@ -12,11 +12,17 @@ class OrderController extends Controller
 {
     public function transferBoxToOrder(){
         $userLoggedId = Auth::id();
-        $user = User::where('id', $userLoggedId)->first();
+        $user = User::with('addresses')->where('id', $userLoggedId)->first();
+        $activeAddress = $user->addresses()->where('is_active', true)->first();
 
+        if($activeAddress === null) return back('error', 'Tidak ada alamat utama');
         if(!$user->box || $user->box->details->isEmpty()) return back('error', 'Tidak ada produk dalam box');
 
-        $order = $user->orders()->create(['user_id', $user->id, 'pemesanan_pada' => now()]);
+        $order = $user->orders()->create([
+            'user_id', $user->id, 
+            'pemesanan_pada' => now(),
+            'address_id' => $activeAddress->id,
+        ]);
 
         foreach($user->box->details as $detail) {
 

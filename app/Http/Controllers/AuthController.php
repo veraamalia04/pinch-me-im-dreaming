@@ -19,8 +19,8 @@ class AuthController extends Controller
             $user = Auth::id();
             $user = user::where('id', $user)->first();
 
-            if($user->addresses->isEmpty()) return redirect()->route('page.address.create', $user->username);
             if($user->roles()->exists()) return redirect()->route('page.dashboard.index');
+            if($user->addresses->isEmpty()) return redirect()->route('page.address.create', $user->username);
             return redirect()->route('index')->with('success', 'Selamat Datang ' . Auth::user()->name);
         }
 
@@ -29,7 +29,7 @@ class AuthController extends Controller
 
     public function logout(Request $request) {
         $request->session()->invalidate();
-        return redirect()->route('page.login')->with('success', 'Saya akan kembali ke Solo, menjadi rakyat biasa 😊');
+        return redirect()->route('login')->with('success', 'Saya akan kembali ke Solo, menjadi rakyat biasa 😊');
     }
 
     public function register(RegisterRequest $request) {
@@ -42,6 +42,6 @@ class AuthController extends Controller
             'username' => $data['username'],
         ]);
 
-        return redirect()->route('page.login')->with('success', 'Selamat Sukses 👍');
+        return redirect()->route('login')->with('success', 'Selamat Sukses 👍');
     }
 }

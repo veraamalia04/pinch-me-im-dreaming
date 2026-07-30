@@ -112,20 +112,42 @@
                         </div>
                     </div>
 
-                    <!-- Bagian 2: Rincian Item -->
-                    <div class="bg-slate-50/70 rounded-lg p-3 border border-slate-100 w-full lg:w-6/12">
-                        <div class="space-y-2">
-                            @foreach ($order->details as $detail)
-                                <div class="flex justify-between items-start text-sm">
-                                    <div class="flex items-start gap-2 pr-4">
-                                        <span class="font-bold text-indigo-600 bg-white px-1.5 py-0.5 rounded shadow-sm text-xs">{{ $detail->quantity }}x</span>
-                                        <span class="text-slate-700 font-medium">{{ $detail->product->name }}</span>
+                    <!-- Bagian 2: Rincian Item & Alamat -->
+                    <div class="flex flex-col gap-3 w-full lg:w-6/12">
+                        <!-- Rincian Item -->
+                        <div class="bg-slate-50/70 rounded-lg p-3 border border-slate-100">
+                            <div class="space-y-2">
+                                @foreach ($order->details as $detail)
+                                    <div class="flex justify-between items-start text-sm">
+                                        <div class="flex items-start gap-2 pr-4">
+                                            <span class="font-bold text-indigo-600 bg-white px-1.5 py-0.5 rounded shadow-sm text-xs">{{ $detail->quantity }}x</span>
+                                            <span class="text-slate-700 font-medium">{{ $detail->product->name }}</span>
+                                        </div>
+                                        <span class="font-semibold text-slate-600 whitespace-nowrap text-xs">
+                                            Rp {{ number_format($detail->sub_total, 0, ',', '.') }}
+                                        </span>
                                     </div>
-                                    <span class="font-semibold text-slate-600 whitespace-nowrap text-xs">
-                                        Rp {{ number_format($detail->sub_total, 0, ',', '.') }}
-                                    </span>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <!-- Informasi Alamat -->
+                        <div class="bg-slate-50/70 rounded-lg p-3 border border-slate-100">
+                            <div class="flex items-start gap-2">
+                                <div class="mt-0.5 shrink-0 text-indigo-400">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.243-4.243a8 8 0 1111.314 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    </svg>
                                 </div>
-                            @endforeach
+                                <div class="flex flex-col text-xs text-slate-600 leading-snug">
+                                    <span class="font-bold text-slate-800 mb-1">Alamat Pengiriman</span>
+                                    <span class="font-semibold text-slate-700">{{ $order->address->alamat }}</span>
+                                    <span>RT {{ $order->address->rt }} / RW {{ $order->address->rw }}, Kel. {{ $order->address->kelurahan }}</span>
+                                    <span>Kec. {{ $order->address->kecamatan }}, {{ $order->address->kota }}</span>
+                                    <span class="font-semibold text-slate-700 mt-1">Kode Pos: {{ $order->address->kode_pos }}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -202,7 +224,7 @@
         </div>
 
         <!-- History Orders List -->
-        <x-riwayat-order :orders=$orders  /> 
+        <x-riwayat-order :orders="$orders" /> 
 
     </div>
 

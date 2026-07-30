@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Address;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
@@ -22,6 +23,18 @@ class UserFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    public function configure(): static
+    {
+        return $this->afterCreating(function (User $user) {
+
+            Address::factory()->create([
+                'user_id' => $user->id,
+                'is_active' => true,
+            ]);
+
+        });
+    }
+    
     public function definition(): array
     {
         return [

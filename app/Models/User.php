@@ -31,6 +31,11 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+
+    }
+
+    public function activeAddress(){
+        return $this->hasOne(Address::class, 'user_id')->where('is_active', true);
     }
 
     public function roles(){

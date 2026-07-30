@@ -1,70 +1,53 @@
 <x-layout title="{{ config('app.name') }}">
-<section class="max-w-7xl mx-auto px-8">
-    <div class="grid lg:grid-cols-2 items-center min-h-[80vh]">
-        <div>
-            <h1 class="mt-2 text-5xl font-black leading-tight text-amber-900">
-                Freshly Made
-                <br>
-                Kue Cubit
-            </h1>     
-           <p class="mt-4 text-xl text-amber-800 max-w-xl leading-8">
-                Nikmati kue cubit hangat dengan berbagai topping premium
-                yang dibuat setiap hari menggunakan bahan berkualitas.
-            </p>
-            <div class="mt-6 flex gap-5">
-                <a href="{{ route('page.menu') }}"
-                    class="bg-amber-800 text-white px-15 py-4 rounded-full hover:scale-105 transition">
-                    Explore Menu
-                </a>
-            </div>
-            <div class="flex gap-8 mt-6 text-amber-900 font-semibold">
-                <div>⭐ <strong>4.9</strong></div>
-                <div>🍫 <strong>20+ Toppings</strong></div>
-                <div>🚚 <strong>Fast Delivery</strong></div>
-            </div>
-        </div>
-        <div>
-        </div>
-    </div>
+    
+    <!-- BUNGKUS BARU: overflow-x-hidden agar web tidak bisa digeser ke kanan -->
+    <div class="w-full overflow-x-hidden">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center max-w-7xl mx-auto px-6 py-9">
+            
+            <!-- Kolom Kiri: Teks -->
+            <div class="flex flex-col gap-6 md:gap-8">
+                
+                <!-- Tags/Badges -->
+                <div class="flex flex-wrap gap-3 text-sm font-semibold tracking-wide text-amber-700 uppercase">
+                    <span class="bg-amber-100 px-3 py-1 rounded-full">Freshly made</span>
+                    <span class="bg-amber-100 px-3 py-1 rounded-full">Melt</span>
+                    <span class="bg-amber-100 px-3 py-1 rounded-full">Butter</span>
+                </div>
 
-</div>
-<div class="absolute bottom-10 left-5 text-4xl">
-🍫
-</div>
+                <!-- Heading -->
+                <div class="leading-tight">
+                    <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold text-amber-600">Pinch me,</h1>
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-amber-800 mt-2">I'm Dreaming</h2>
+                </div>
 
-<div class="hidden lg:block">
-    <div class="absolute top-[52%] right-11 -translate-y-1/2 z-20">
-        <div class="w-[380px] rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl p-2 text-center">
-            <span class="inline-block bg-yellow-400 text-amber-900 px-4 py-2 rounded-full font-bold">
-                Best Seller
-            </span>
-            <img
-                src="{{ asset('images/Card-kue-cubit.jpeg') }}"
-                alt="Kue Cubit"
-                class="w-64 h-44 object-cover rounded-2xl mx-auto mt-2 shadow-lg hover:scale-105 transition duration-300">
-            <h2 class="mt-2 text-2xl font-bold text-white">
-    Chocolate Lava
-</h2>
-<div class="flex justify-center items-center gap-2 mt-3">
-    <span class="text-yellow-400 text-xl">
-        ★★★★★
-    </span>
-    <span class="text-gray-200 text-sm">
-        4.9 (2.100 Reviews)
-    </span>
-</div>
-<p class="text-gray-200 mt-3">
-    Freshly Baked Everyday
-</p>
-<div class="mt-6 text-4xl font-extrabold text-yellow-300">
-    Rp18.000
-</div>
-            <button
-                class="mt-8 bg-amber-600 hover:bg-amber-700 px-8 py-3 rounded-full text-white">
-                Order Now
-            </button>
+                <!-- Deskripsi -->
+                <p class="text-lg text-orange-700 text-justify leading-relaxed max-w-lg">
+                    Say hello to your next sugar craving.
+                    Perfect bite-sized pancakes.
+                    Melt-in-your-mouth goodness.
+                    It looks good, but I promise it tastes even better.
+                    Pinch Me, I'm Dreaming
+                </p>
+
+                <!-- Tombol CTA -->
+                <div>
+                    <a href="{{ route('page.menu') }}" 
+                       class="inline-block px-8 py-3 bg-amber-400 text-gray-900 font-bold uppercase tracking-wider rounded-full ring-2 ring-amber-400 hover:bg-amber-500 hover:text-white hover:ring-amber-500 transition-all duration-300 shadow-md hover:shadow-lg">
+                        Go to menu
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="flex justify-start relative">
+                <img src="{{ asset('images/product-bg.png') }}" 
+                     alt="Background {{ config('app.name') }}" 
+                     class="w-[100%] md:w-[110%] lg:w-[130%] max-w-none object-contain drop-shadow-xl hover:scale-105 transition-transform duration-500"
+                >
+            </div>
+            
         </div>
+        
     </div>
-</div>
-</section>
 </x-layout>

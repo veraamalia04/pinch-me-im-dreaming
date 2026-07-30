@@ -77,7 +77,7 @@
                         </div>
                         <h3 class="text-2xl font-extrabold text-amber-900 mb-2">Keranjangmu masih kosong</h3>
                         <p class="text-amber-700/80 max-w-sm mb-8 font-medium">Jangan biarkan keranjangmu kelaparan. Yuk, cari kue atau produk menarik lainnya!</p>
-                        <a href="/" class="inline-flex items-center justify-center px-8 py-3 text-base font-bold text-white bg-gradient-to-b from-amber-400 to-orange-500 border-b-4 border-orange-600 rounded-xl hover:mt-1 hover:border-b-0 hover:mb-1 transition-all shadow-lg shadow-orange-500/30">
+                        <a href="{{ route('page.menu') }}" class="inline-flex items-center justify-center px-8 py-3 text-base font-bold text-white bg-gradient-to-b from-amber-400 to-orange-500 border-b-4 border-orange-600 rounded-xl hover:mt-1 hover:border-b-0 hover:mb-1 transition-all shadow-lg shadow-orange-500/30">
                             Mulai Belanja
                         </a>
                     </div>

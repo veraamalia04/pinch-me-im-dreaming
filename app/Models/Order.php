@@ -6,14 +6,15 @@ use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Attributes\Appends;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-#[Fillable(['user_id', 'pemesanan_pada', 'pemrosesan_pada', 'pengiriman_pada', 'selesai_pada'])]
+#[Fillable(['user_id', 'pemesanan_pada', 'pemrosesan_pada', 'pengiriman_pada', 'selesai_pada', 'address_id'])]
 #[Appends(['total_harga', 'status'])]
 class Order extends Model
 {
-    use HasUlids, SoftDeletes;
+    use HasUlids, SoftDeletes, HasFactory;
     protected $table = 'orders';
 
     public function user(){
@@ -26,6 +27,10 @@ class Order extends Model
 
     public function getTotalHargaAttribute(){
         return $this->details->sum('sub_total');
+    }
+
+    public function address(){
+        return $this->belongsTo(Address::class, 'address_id');
     }
 
     public function getStatusAttribute(): string{

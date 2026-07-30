@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Address;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -86,7 +87,7 @@ class PageController extends Controller
         $user = User::with('box.details')->where('id', $userLoggedId)->first();
 
         $boxDetails = $user->box->details ?? [];
-        $box = $user->box;
+        $box = $user->box ?? [];
 
         return view('box.index', compact('boxDetails', 'box'));
     }
@@ -95,12 +96,30 @@ class PageController extends Controller
         $userLoggedId = Auth::id();
 
         $user = User::with('orders.details.product')->where('id', $userLoggedId)->first();
-        $orders = $user->orders;
+        $orders = $user->orders ?? [];
         return view('order.index', compact('orders'));
     }
 
     public function orderDetailPage(Order $order){
         $order->load('details.product');
          return view('order.show', compact('order'));
+    }
+
+    public function pageCreateAddress(User $user){
+        if(Auth::user()->username !== $user->username) return redirect()->route('page.address.create', Auth::user()->username);
+        return view('create-alamat', compact('user'));
+    }
+
+    public function pageEditAddress(Address $address){
+        if($address->user_id !== Auth::id()) return redirect()->route('index');
+        return view('edit-alamat', compact('address'));
+    }
+
+    public function myProfile(){
+        if(!Auth::check()) return abort(404);
+        $userLoggedId = Auth::id();
+        $user = User::with('addresses')->where('id', $userLoggedId)->first();
+
+        return view('myprofile', compact('user'));
     }
 }

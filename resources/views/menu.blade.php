@@ -28,7 +28,7 @@
         <div class="max-w-5xl mx-auto text-center">
             <span class="font-price text-[#C9963B] text-xs tracking-[0.35em] uppercase">Papan Menu</span>
             <h1 class="font-display italic text-[#FBF2E3] text-4xl sm:text-6xl mt-3 leading-tight">
-                Kue Cubit &amp; laba-laba
+                Kue Cubit
             </h1>
             <p class="text-[#E4CFB4] mt-4 max-w-xl mx-auto text-sm sm:text-base">
                 Dipanggang di atas cetakan panas, dituang satu per satu, dicubit dengan sabar. Pilih rasa favoritmu di bawah ini.
@@ -45,7 +45,7 @@
                 <circle cx="11" cy="11" r="7"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
-            <input id="cariMenu" type="text" placeholder="Cari kue cubit, laba-laba, rasa favoritmu..."
+            <input id="cariMenu" type="text" placeholder="Cari kue cubit rasa favoritmu..."
                 class="w-full font-body bg-white border-2 border-[#E4CFB4] focus:border-[#C9963B] focus:outline-none rounded-full py-3 pl-12 pr-5 text-[#3A2415] placeholder-[#B08A63] transition-colors" />
         </div>
     </div>
@@ -55,7 +55,7 @@
 
             <div id="gridMenu" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach ($products as $index => $product)
-                    <div data-name="{{ strtolower($product->name) }}" data-deskripsi="{{ strtolower($product->deskripsi) }}"
+                    <div id="{{ $product->id }}" data-name="{{ strtolower($product->name) }}" data-deskripsi="{{ strtolower($product->deskripsi) }}"
                         class="kartu-produk card-rise bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center"
                         style="animation-delay: {{ min($index, 12) * 40 }}ms">
 

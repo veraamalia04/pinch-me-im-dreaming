@@ -32,7 +32,7 @@ class BoxController extends Controller
             ]);
         }
 
-        return back()->with('success', 'Kue cubit berhasil dimasukkan ke dalam box');
+        return back()->with('success', 'Kue cubit berhasil dimasukkan ke dalam box')->withFragment($data['product_id']);
     }
 
     public function increaseOneToBox(BoxDetail $detail){

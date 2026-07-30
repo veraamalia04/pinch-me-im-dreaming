@@ -1,5 +1,5 @@
 @if (session('success') || session('error'))
-<div id="flash-message-container" class="fixed top-5 right-5 z-50 w-full max-w-sm flex flex-col gap-3">
+<div id="flash-message-container" class="fixed top-5 right-5 z-500 w-full max-w-sm flex flex-col gap-3">
 
     @if (session('success'))
         <div

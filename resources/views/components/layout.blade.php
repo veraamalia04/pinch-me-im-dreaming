@@ -98,6 +98,12 @@
                             <p class="text-sm font-semibold text-amber-900 truncate">{{ Auth::user()->name }}</p>
                         </div>
 
+                        <div class="px-4 py-3 border-b border-amber-900/10">
+                            <a href="{{ route('page.myprofile') }}" class="text-sm font-semibold text-amber-900 truncate">MyProfile</a>
+                        </div>
+
+
+
                         <!-- Tombol Logout -->
                         <form action="{{ route('post.logout') }}" method="POST" class="m-0">
                             @csrf

@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\Address\CreateRequest;
-use App\Models\User;
 use App\Models\Address;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AddressController extends Controller
 {
@@ -28,7 +29,7 @@ class AddressController extends Controller
             'is_active' => $is_active,
         ]);
 
-        return redirect()->route('page.home')->with('success', 'Welcome to ' . config('app.name'));
+        return redirect()->route('index')->with('success', 'Welcome to ' . config('app.name'));
     }
 
     public function deleteAddress(User $user, Address $address){
@@ -60,7 +61,7 @@ class AddressController extends Controller
             return back()->with('success', 'Berhasil mengganti alamat');
     }
 
-    public function changeActiveAdress(Address $address){
+    public function changeActiveAddress(Address $address){
         $activeAddresses = Address::where('is_active', true)->update(['is_active' => false]);
 
         $address->update(['is_active' =>true]);

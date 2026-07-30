@@ -55,7 +55,7 @@
 
             <div id="gridMenu" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 @foreach ($products as $index => $product)
-                    <div data-name="{{ strtolower($product->name) }}" data-deskripsi="{{ strtolower($product->deskripsi) }}"
+                    <div id="{{ $product->id }}" data-name="{{ strtolower($product->name) }}" data-deskripsi="{{ strtolower($product->deskripsi) }}"
                         class="kartu-produk card-rise bg-white rounded-3xl p-5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center"
                         style="animation-delay: {{ min($index, 12) * 40 }}ms">
 

@@ -97,7 +97,7 @@
                                     </button>
                                 </form>
                             @else
-                                <a href="{{ route('page.login') }}"
+                                <a href="{{ route('login') }}"
                                     class="block w-full bg-[#E4CFB4] hover:bg-[#C9963B] text-[#3A2415] font-body font-semibold text-sm rounded-full py-3 transition-colors text-center">
                                     Masuk untuk Pesan
                                 </a>

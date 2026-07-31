@@ -39,8 +39,8 @@
                             <x-form.input value="{{ $address->alamat }}" name="alamat" label="Alamat Lengkap (Nama Jalan, Gedung, No. Rumah)" />
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <x-form.input value="{{ $address->rt }}" type="number" name="rt" label="RT (Contoh: 001)" />
-                            <x-form.input value="{{ $address->rw }}" type="number" name="rw" label="RW (Contoh: 002)" />
+                            <x-form.input value="{{ $address->rt }}" type="number" name="rt" label="RT (Contoh: 1)" />
+                            <x-form.input value="{{ $address->rw }}" type="number" name="rw" label="RW (Contoh: 2)" />
                         </div>
                     </div>
                 </div>

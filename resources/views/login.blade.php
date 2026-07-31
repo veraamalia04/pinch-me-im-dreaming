@@ -7,7 +7,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
                 </div>
-                <h3 class="text-2xl font-bold text-amber-900">Login Page</h3>
+                <h3 class="text-2xl font-bold text-amber-900">Login</h3>
                 <p class="text-amber-700 text-sm mt-1">Silakan masuk untuk melanjutkan</p>
             </div>
 

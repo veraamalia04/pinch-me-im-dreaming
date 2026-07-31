@@ -1,68 +1,266 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🍪 Pinch Me, I'm Dreaming!
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 📖 Deskripsi Aplikasi
 
-## About Laravel
+**Pinch Me, I'm Dreaming!** merupakan aplikasi berbasis web yang digunakan untuk membantu proses pemesanan dan pengelolaan toko kue. Aplikasi ini dibangun menggunakan **Laravel 13**, dengan tujuan mempermudah pelanggan dalam melakukan pemesanan secara online sekaligus membantu pengelolaan produk, pesanan, dan laporan penjualan.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Aplikasi memiliki empat jenis pengguna (role), yaitu:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Customer** → melakukan registrasi, melihat produk, memasukkan produk ke dalam box (keranjang), melakukan pemesanan, melihat riwayat pesanan, dan mengelola alamat.
+- **Cashier** → mengelola pesanan pelanggan dan memproses status pesanan.
+- **Stocker** → mengelola data produk, mulai dari menambah, mengubah, menghapus produk, hingga memperbarui harga produk.
+- **Owner** → melihat laporan penjualan berdasarkan periode harian, mingguan, maupun bulanan.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+# ✨ Fitur Aplikasi
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Customer
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- Registrasi akun
+- Login
+- Melihat daftar produk
+- Menambahkan produk ke Box (Keranjang)
+- Mengubah jumlah produk
+- Checkout pesanan
+- Mengelola alamat
+- Melihat riwayat pesanan
+- Melihat detail pesanan
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## Stocker
 
-## Agentic Development
+- Menambah produk
+- Mengubah data produk
+- Menghapus produk
+- Memperbarui harga produk
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Cashier
+
+- Melihat seluruh pesanan
+- Memproses pesanan
+- Mengubah status pesanan menjadi diproses
+- Mengubah status pesanan menjadi dikirim
+
+## Owner
+
+- Dashboard laporan
+- Total penjualan
+- Jumlah pelanggan
+- Jumlah produk terjual
+- Filter laporan:
+  - Harian
+  - Mingguan
+  - Bulanan
+
+---
+
+# ⚙️ Teknologi yang Digunakan
+
+- Laravel 13
+- PHP 8.3
+- SQLite
+- Blade Template
+- Tailwind CSS
+- Vite
+- Alpine.js
+
+---
+
+# 💻 Cara Instalasi
+
+## 1. Clone Repository
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/username/repository.git
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Masuk ke folder project
 
-## Contributing
+```bash
+cd repository
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## 2. Install Dependency PHP
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+composer install
+```
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 3. Install Dependency Frontend
 
-## License
+```bash
+npm install
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
 
+## 4. Copy File Environment
 
-Aplikasi....
+```bash
+cp .env.example .env
+```
 
-(((gimana aplikasi bekerja)))
+atau Windows
 
-Vera: code ()
-Andri: desain ()
-Deseri: dokumentasi ()
+```bash
+copy .env.example .env
+```
 
+---
+
+## 5. Generate Application Key
+
+```bash
+php artisan key:generate
+```
+
+---
+
+## 6. Jalankan Migration
+
+```bash
+php artisan migrate
+```
+
+---
+
+## 7. Membuat Symbolic Link Storage
+
+```bash
+php artisan storage:link
+```
+
+---
+
+## 8. Menjalankan Vite
+
+```bash
+npm run dev
+```
+
+---
+
+## 9. Menjalankan Laravel
+
+```bash
+php artisan serve
+```
+
+Aplikasi dapat diakses melalui
+
+```
+http://127.0.0.1:8000
+```
+
+---
+
+# 📚 Panduan Penggunaan
+
+## Sebagai Customer
+
+### 1. Registrasi
+
+- Membuat akun baru.
+- Login menggunakan username dan password.
+
+### 2. Menambahkan Alamat
+
+Setelah login pertama kali, pengguna diwajibkan mengisi alamat utama yang akan digunakan untuk pengiriman.
+
+### 3. Melihat Produk
+
+Pilih menu produk untuk melihat daftar kue yang tersedia.
+
+### 4. Menambahkan Produk ke Box
+
+Tekan tombol **Tambah ke Box** pada produk yang diinginkan.
+
+### 5. Mengubah Jumlah Produk
+
+Pada halaman Box, jumlah produk dapat ditambah atau dikurangi.
+
+### 6. Checkout
+
+Tekan tombol checkout untuk membuat pesanan.
+
+### 7. Melihat Riwayat Pesanan
+
+Customer dapat melihat seluruh riwayat pesanan beserta statusnya.
+
+---
+
+## Sebagai Stocker
+
+Masuk menggunakan akun Stocker.
+
+Fitur yang tersedia:
+
+- Menambah produk
+- Mengedit produk
+- Menghapus produk
+- Memperbarui harga produk
+
+---
+
+## Sebagai Cashier
+
+Masuk menggunakan akun Cashier.
+
+Fitur:
+
+- Melihat daftar pesanan
+- Menandai pesanan menjadi **Diproses**
+- Menandai pesanan menjadi **Dikirim**
+
+---
+
+## Sebagai Owner
+
+Masuk menggunakan akun Owner.
+
+Owner dapat melihat:
+
+- Total penjualan
+- Jumlah pelanggan
+- Produk terjual
+- Laporan harian
+- Laporan mingguan
+- Laporan bulanan
+
+---
+
+# 🔄 Alur Kerja Aplikasi
+
+1. Customer melakukan registrasi.
+2. Customer login ke aplikasi.
+3. Customer mengisi alamat utama.
+4. Customer memilih produk.
+5. Produk dimasukkan ke dalam Box.
+6. Customer melakukan checkout.
+7. Pesanan masuk ke dashboard Cashier.
+8. Cashier memproses pesanan.
+9. Cashier mengirim pesanan.
+10. Setelah pesanan diterima, Customer menandai pesanan selesai.
+11. Data penjualan otomatis masuk ke dashboard Owner.
+
+---
+
+---
+
+# 👥 Anggota Kelompok
+
+| Nama | Kontribusi |
+|-------|------------|
+| **Vera Amalia** | Pengembangan **Back-End**, pengujian aplikasi (Testing), serta melakukan perapihan dan penyempurnaan beberapa tampilan antarmuka (UI). |
+| **Andri Yanto Wijaya** | Mendesain antarmuka pengguna (UI), mengembangkan fitur **Stocker**, **Cashier**, dan **Owner**. |
+| **Deseri Lahagu** | Mencari dan menyiapkan foto produk, serta menyusun **User Flow** aplikasi. |
+
+---
+
+# 📝 Lisensi
+
+Project ini dibuat untuk memenuhi tugas mata kuliah Pengembangan Aplikasi Web dan hanya digunakan untuk keperluan akademik.

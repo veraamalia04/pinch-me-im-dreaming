@@ -27,7 +27,7 @@
                     Perfect bite-sized pancakes.
                     Melt-in-your-mouth goodness.
                     It looks good, but I promise it tastes even better.
-                    Pinch Me, I'm Dreaming
+                    Pinch Me, I'm Dreaming!
                 </p>
 
                 <!-- Tombol CTA -->

@@ -13,6 +13,18 @@ Aplikasi memiliki empat jenis pengguna (role), yaitu:
 
 ---
 
+# Informasi akun Demo 
+
+### Semua privilages
+- username = vera
+- password = vera
+
+### User Biasa
+- username = adam
+- password = adam
+
+---
+
 # ✨ Fitur Aplikasi
 
 ## Customer

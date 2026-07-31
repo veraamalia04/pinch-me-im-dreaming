@@ -23,7 +23,7 @@
             </div>
 
             <!-- Form Section -->
-            <form action="{{ route('put.address.update', Auth::id()) }}" method="POST" class="space-y-8">
+            <form action="{{ route('put.address.update', $address->id) }}" method="POST" class="space-y-8">
                 @csrf
                 
                 @method('PUT')

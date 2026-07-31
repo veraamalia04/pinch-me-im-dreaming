@@ -235,6 +235,106 @@ Owner dapat melihat:
 
 # 🔄 Alur Kerja Aplikasi
 
+#  Alur Kerja Sistem
+
+## Pelanggan
+
+```text
+Register
+    │
+    ▼
+Login
+    │
+    ▼
+Tambah Alamat
+    │
+    ▼
+Pilih Produk
+    │
+    ▼
+Masukkan ke Cup
+    │
+    ▼
+Checkout
+    │
+    ▼
+Order Dibuat
+    │
+    ▼
+Kasir Memproses
+    │
+    ▼
+Kasir Mengirim
+    │
+    ▼
+Pesanan Diterima
+    │
+    ▼
+Selesai
+```
+
+---
+
+## Stocker
+
+```text
+Login
+   │
+   ▼
+Dashboard
+   │
+   ├── Tambah Produk
+   ├── Edit Produk
+   ├── Update Harga
+   └── Hapus Produk
+```
+
+---
+
+## Kasir
+
+```text
+Login
+   │
+   ▼
+Dashboard
+   │
+   ▼
+Melihat Order
+   │
+   ▼
+Diproses
+   │
+   ▼
+Dikirim
+   │
+   ▼
+Menunggu Konfirmasi Pelanggan
+```
+
+---
+
+## Owner
+
+```text
+Login
+   │
+   ▼
+Dashboard
+   │
+   ▼
+Laporan Penjualan
+   │
+   ├── Harian
+   ├── Mingguan
+   ├── Bulanan
+   ├── Total Penjualan
+   ├── Total Pembeli
+   └── Total Produk Terjual
+```
+
+---
+
 1. Customer melakukan registrasi.
 2. Customer login ke aplikasi.
 3. Customer mengisi alamat utama.
@@ -254,10 +354,10 @@ Owner dapat melihat:
 # 👥 Anggota Kelompok
 
 | Nama | Kontribusi |
-|-------|------------|
-| **Vera Amalia** | Pengembangan **Back-End**, pengujian aplikasi (Testing), serta melakukan perapihan dan penyempurnaan beberapa tampilan antarmuka (UI). |
-| **Andri Yanto Wijaya** | Mendesain antarmuka pengguna (UI), mengembangkan fitur **Stocker**, **Cashier**, dan **Owner**. |
-| **Deseri Lahagu** | Mencari dan menyiapkan foto produk, serta menyusun **User Flow** aplikasi. |
+| :--- | :--- |
+| **Vera Amalia** | **Lead Back-End & Logic:**<br>• Membangun keseluruhan sistem back-end aplikasi.<br>• Mengerjakan sistem autentikasi pengguna dan middleware.<br>• Membuat tampilan antarmuka (UI) untuk Login, Register, dan halaman Menu.<br>• Membangun fitur manajemen Alamat (Logika back-end sekaligus UI).<br>• Bertanggung jawab atas pembuatan migrasi database dan pengujian aplikasi (Testing). <br>• Membuat dokumentasi. |
+| **Andri Yanto Wijaya** | **Front-End (Dashboard) & Assets:**<br>• Mendesain dan membangun antarmuka pengguna (UI) khusus untuk fitur dashboard Kasir, Stocker, dan Owner.<br>• Menambahkan dan mengonfigurasi aset foto produk ke dalam direktori `public/images`.<br>• Membantu pembuatan dan penyusunan UI pada tampilan awal (landing page). |
+| **Deseri Lahagu** | **Research & Planning:**<br>• Bertanggung jawab mencari, menyeleksi, dan menyiapkan seluruh foto produk yang digunakan dalam aplikasi.<br>• Menyusun dan merancang User Flow (alur kerja) agar aplikasi logis, terstruktur, dan mudah digunakan oleh tiap peran. |
 
 ---
 
